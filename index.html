@@ -11,7 +11,7 @@
   <script>
     document.getElementById('exploitButton').onclick = function() {
       console.log('Exploit button clicked');
-      fetch('https://s7mbrstreamdual-ap.scene7.com/crossdomain.xml', {
+      fetch('https://business.adobe.com/products/magento/magento-commerce.html?q=user%2fpassword%2f', {
         method: 'GET',
         headers: {
           'Accept': '*/*',
@@ -20,6 +20,9 @@
         }
       })
       .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         console.log('Response received');
         return response.text();
       })
